@@ -1,3 +1,4 @@
+package creatures;
 
 public abstract class AbstractCreature {
     //TEMPLATE PATTERN
@@ -8,7 +9,7 @@ public abstract class AbstractCreature {
         if (isAlive) {
             return (numberOfNeighbours < getMinimumNeighbours() || numberOfNeighbours > getMaxNeighbors());
         } else {
-            return (numberOfNeighbours == getRessurectionNeighbours());
+            return (numberOfNeighbours == getResurrectionNeighbourCount());
         }
     }
 
@@ -16,12 +17,12 @@ public abstract class AbstractCreature {
         this.isAlive = false;
     }
 
-    public void ressurect() {
+    public void resurrect() {
         this.isAlive = true;
     }
 
     public abstract int getMinimumNeighbours();
     public abstract int getMaxNeighbors();
-    public abstract int getRessurectionNeighbours();
+    public abstract int getResurrectionNeighbourCount();
 
 }
