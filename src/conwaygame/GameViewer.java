@@ -8,6 +8,7 @@ public class GameViewer extends JFrame {
 
     GamePanel gamePanel;
     JButton makeCell1AliveButton = new JButton("make cell 1 alive");
+    JButton playTurnButton = new JButton("play a turn");
 
     public GameViewer() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,6 +19,7 @@ public class GameViewer extends JFrame {
         gamePanel = new GamePanel();
         mainPanel.add(gamePanel);
         mainPanel.add(makeCell1AliveButton);
+        mainPanel.add(playTurnButton);
         this.add(mainPanel);
         this.pack();
 
@@ -29,18 +31,22 @@ public class GameViewer extends JFrame {
         makeCell1AliveButton.addActionListener(actionListener);
     }
 
-    public void play() {
-        this.setVisible(true);
-        gamePanel.startGameThread();
-
+    public void addPlayTurnListener(ActionListener actionListener) {
+        playTurnButton.addActionListener(actionListener);
     }
 
     public void makeCell1Alive() {
         this.gamePanel.cell1Alive = true;
+        this.repaint();
+    }
+
+    public void makeCell1Dead() {
+        this.gamePanel.cell1Alive = false;
+        this.repaint();
     }
 
 
-    public class GamePanel extends JPanel implements Runnable{
+    public class GamePanel extends JPanel{
 
         //SCREEN SETTINGS
         final int originalTileSize = 16; //16x16 sprite size
@@ -59,22 +65,6 @@ public class GameViewer extends JFrame {
             this.setPreferredSize(new Dimension(screenWidth, screenHeight));
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);
-        }
-
-        public void startGameThread(){
-            gameThread = new Thread(this);
-            gameThread.start();
-        }
-
-        @Override
-        public void run() {
-            while (gameThread != null){
-                //System.out.println("The game loop is running");
-                //UPDATE
-                update();
-                //DRAW
-                repaint();
-            }
         }
 
         public void update(){
