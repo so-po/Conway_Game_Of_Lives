@@ -13,10 +13,11 @@ Design Patterns:
 - Factory Pattern: Creature factory
 - Model View Control Pattern: Model - Grid. Controller - GameController. View - GameViewer
 
+Questions we have:
+- how to instantiate both gameviewer and grid with the grid size? 
+- which class should run the game? Should that be the controller, or the model?
 
 model view controller reference:
 - https://www.geeksforgeeks.org/system-design/mvc-design-pattern/
 - https://www.youtube.com/watch?v=dTVVa2gfht8
-
-Issue I'm running in to: Who should run the game? Should that be the controller, or the model?
-It's surely not the viewer, but that's what we currently have set up.
+- https://web.archive.org/web/20130726050302/https://www.newthinktank.com/2013/02/mvc-java-tutorial/
