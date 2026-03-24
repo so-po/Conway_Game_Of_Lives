@@ -4,7 +4,7 @@ public abstract class AbstractCreature {
     //TEMPLATE PATTERN
     private boolean isAlive = false;
 
-    public final void checkNeighborsAndSetState(int numberOfNeighbours) {
+    public final void setAliveStateBasedOnNeighbours(int numberOfNeighbours) {
         //Kill or resurrect the cell given its number of neighbours
         if (isAlive && (numberOfNeighbours < getMinimumNeighbours() || numberOfNeighbours > getMaxNeighbours())) {
                 this.kill();

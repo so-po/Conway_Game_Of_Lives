@@ -76,7 +76,7 @@ public class Grid {
         for (int j = 0; j < GRID_ROWS; j++) {
             for (int i = 0; i < GRID_COLUMNS; i++) {
                 AbstractCreature creature = getCell(i, j);
-                creature.checkNeighborsAndSetState(countAliveNeighbors(i, j));
+                creature.setAliveStateBasedOnNeighbours(countAliveNeighbors(i, j));
             }
         }
     }
