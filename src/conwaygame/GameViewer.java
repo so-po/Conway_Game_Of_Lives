@@ -8,11 +8,11 @@ public class GameViewer extends JFrame {
 
     GamePanel gamePanel;
     JLabel xCoordLabel = new JLabel("x: ");
-    JTextField xCoordInput = new JTextField();
+    JTextField xCoordInput = new JTextField("  ");
     JLabel yCoordLabel = new JLabel("y: ");
-    JTextField yCoordInput = new JTextField();
+    JTextField yCoordInput = new JTextField("  ");
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
-    JButton playTurnButton = new JButton("play a turn");
+    JButton pauseUnpauseButton = new JButton("pause/unpause");
 
     public GameViewer() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +27,7 @@ public class GameViewer extends JFrame {
         mainPanel.add(yCoordLabel);
         mainPanel.add(yCoordInput);
         mainPanel.add(toggleCellStateButton);
-        mainPanel.add(playTurnButton);
+        mainPanel.add(pauseUnpauseButton);
         this.add(mainPanel);
         this.pack();
 
@@ -39,8 +39,8 @@ public class GameViewer extends JFrame {
         toggleCellStateButton.addActionListener(actionListener);
     }
 
-    public void addPlayTurnListener(ActionListener actionListener) {
-        playTurnButton.addActionListener(actionListener);
+    public void addPauseUnpauseListener(ActionListener actionListener) {
+        pauseUnpauseButton.addActionListener(actionListener);
     }
 
     public void setCellState(int x, int y, boolean alive) {
