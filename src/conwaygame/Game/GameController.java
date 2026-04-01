@@ -55,10 +55,11 @@ public class GameController {
 //                    System.out.println("Thread is running with: " +
 //                            Thread.currentThread().getName() + " " + paused);
                     gridModel.playTurn();
-                    view.setCellState(0, 0, gridModel.isCellAlive(0, 0));
-                    view.setCellState(0, 1, gridModel.isCellAlive(0, 1));
-                    view.setCellState(1, 0, gridModel.isCellAlive(1, 0));
-                    view.setCellState(1, 1, gridModel.isCellAlive(1, 1));
+                    for (int x = 0; x < gridModel.GRID_COLUMNS; x++) {
+                        for (int y = 0; y < gridModel.GRID_ROWS; y++) {
+                            view.setCellState(x, y, gridModel.isCellAlive(x, y));
+                        }
+                    }
                     try {
                         sleep(500);
                     } catch (InterruptedException e) {

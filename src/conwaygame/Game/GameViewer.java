@@ -13,6 +13,7 @@ public class GameViewer extends JFrame {
     JTextField yCoordInput = new JTextField("  ");
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
+    Color[][] cellColors;
 
     public GameViewer(int width, int height) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +29,7 @@ public class GameViewer extends JFrame {
         mainPanel.add(yCoordInput);
         mainPanel.add(toggleCellStateButton);
         mainPanel.add(pauseUnpauseButton);
+        cellColors = new Color[height][width];
         this.add(mainPanel);
         this.pack();
 
@@ -43,23 +45,18 @@ public class GameViewer extends JFrame {
     }
 
     public void setCellState(int x, int y, boolean alive) {
-        if (x == 0 && y == 0) { //not my finest moment
-            this.gamePanel.cell1Alive = alive;
-        } else if (x==1 && y == 0) {
-            this.gamePanel.cell2Alive = alive;
-        } else if (x==0 && y ==1) {
-            this.gamePanel.cell3Alive = alive;
-        } else if (x ==1 && y==1) {
-            this.gamePanel.cell4Alive = alive;
+        if (alive) {
+            this.cellColors[y][x] = Color.GREEN;
+        } else {
+            this.cellColors[y][x] = Color.RED;
         }
         this.repaint();
     }
 
-
-
     class GamePanel extends JPanel{
 
         //SCREEN SETTINGS
+        //TODO: clean this up
         final int originalTileSize = 16; //16x16 sprite size
         final int scale = 3;
 
@@ -68,17 +65,15 @@ public class GameViewer extends JFrame {
         final int maxScreenRow = 12;
         final int screenWidth = tileSize * maxScreenCol;
         final int screenHeight = tileSize * maxScreenRow;
-        boolean cell1Alive = false;
-        boolean cell2Alive = false;
-        boolean cell3Alive = false;
-        boolean cell4Alive = false;
+        final int numberOfHorizontalCells;
+        final int numberOfVerticalCells;
 
-        Thread gameThread;
-
-        public GamePanel(int width, int height){
+        public GamePanel(int numberOfHorizontalCells, int numberOfVerticalCells){
             this.setPreferredSize(new Dimension(screenWidth, screenHeight));
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);
+            this.numberOfHorizontalCells = numberOfHorizontalCells;
+            this.numberOfVerticalCells = numberOfHorizontalCells;
         }
 
         public void paintComponent(Graphics g){
@@ -87,38 +82,15 @@ public class GameViewer extends JFrame {
             int origin = 100;
             Graphics g2 = (Graphics2D)g;
 
+            for (int x = 0; x < numberOfHorizontalCells; x++) {
+                for (int y = 0; y < numberOfVerticalCells; y++) {
+                    g2.setColor(Color.BLACK);
+                    g2.drawRect(origin+tileSize*x, origin+tileSize*y, tileSize, tileSize);
+                    g2.setColor(cellColors[y][x]);
+                    g2.fillRect(origin+tileSize*x, origin+tileSize*y, tileSize, tileSize);
+                }
 
-            if (cell1Alive) {
-                g2.setColor(Color.green);
-            } else {
-                g2.setColor(Color.red);
             }
-
-            g2.fillRect(origin,origin,tileSize, tileSize);
-
-            if (cell2Alive) {
-                g2.setColor(Color.green);
-            } else {
-                g2.setColor(Color.red);
-            }
-
-            g2.fillRect(origin+tileSize,origin,tileSize, tileSize);
-
-            if (cell3Alive) {
-                g2.setColor(Color.green);
-            } else {
-                g2.setColor(Color.red);
-            }
-
-            g2.fillRect(origin,origin+tileSize,tileSize, tileSize);
-
-            if (cell4Alive) {
-                g2.setColor(Color.green);
-            } else {
-                g2.setColor(Color.red);
-            }
-
-            g2.fillRect(origin+tileSize,origin+tileSize,tileSize, tileSize);
 
             g2.dispose();
         }

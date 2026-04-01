@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        ConwayGame conwayGame = new ConwayGame(2, 2);
+        ConwayGame conwayGame = new ConwayGame(4, 4);
 
     }
 }

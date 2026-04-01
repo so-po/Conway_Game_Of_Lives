@@ -7,15 +7,16 @@ This project is conway's game of life (https://conwaylife.com/), extended to inc
 # TODO: 
 
 **MVP:**
-- [ ] Logic & UI: Make UI grid cells dynamically editable instead of hard-coded
-- [ ] UI: Create an actual grid UI
 - [ ] Logic: Add different types of creatures to the grid
 - [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
 - [ ] Logic: Figure out why GameController thread only works when printing text. (???)
-
+- [ ] UI: show whether the game is paused or unpaused
 - [X] ~~Design: Create a wrapper for the ConwayGame, GameController and GameViewer~~
+- [X] Logic & UI: Make UI grid cells dynamically editable instead of hard-coded
+- [X] UI: Create an actual grid UI
 
 **Stretch Goals:** 
+- [ ] UI: Center the grid & make the UI dynamically resize.
 - [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
 - [ ] UI: Replace the text entry x, y coordinates to edit cells with being able to click on the grid 
 
