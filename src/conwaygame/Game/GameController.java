@@ -16,6 +16,7 @@ public class GameController {
         this.view = view;
         this.runGameTask = new RunGameTask();
         runGameTask.start();
+        playOneTurnAndUpdateView(); //plays one turn to load in the grid
 
         this.view.toggleCellStateListener(new ActionListener() {
             @Override
@@ -44,26 +45,30 @@ public class GameController {
         });
     }
 
+
+    private void playOneTurnAndUpdateView() {
+        gridModel.playTurn();
+        for (int x = 0; x < gridModel.GRID_COLUMNS; x++) {
+            for (int y = 0; y < gridModel.GRID_ROWS; y++) {
+                view.setCellState(x, y, gridModel.isCellAlive(x, y));
+            }
+        }
+    }
+
     class RunGameTask extends Thread {
 
         boolean paused = true;
 
         public void run() {
             while (true) { //TODO: is this a problem? need to kill this thread?
-                System.out.println(paused); //TODO: why the heck does this code only work when I'm printing this out????!
+                view.gamePausedLabel.setText("Game Paused");
                 while(!paused) {
-//                    System.out.println("Thread is running with: " +
-//                            Thread.currentThread().getName() + " " + paused);
-                    gridModel.playTurn();
-                    for (int x = 0; x < gridModel.GRID_COLUMNS; x++) {
-                        for (int y = 0; y < gridModel.GRID_ROWS; y++) {
-                            view.setCellState(x, y, gridModel.isCellAlive(x, y));
-                        }
-                    }
+                    view.gamePausedLabel.setText("Game Unpaused");
+                    playOneTurnAndUpdateView();
                     try {
                         sleep(500);
                     } catch (InterruptedException e) {
-                        //just ignore the exception instead of:
+                        //just ignore this exception instead of throwing an exception like:
                         //throw new RuntimeException(e);
                     }
                 }
@@ -72,7 +77,6 @@ public class GameController {
 
         public void togglePaused() {
             paused = !paused;
-            System.out.println("Am I paused? = " + paused);
         }
 
     }

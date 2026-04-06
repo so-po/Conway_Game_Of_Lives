@@ -4,16 +4,23 @@ Group Members: Melanie Porter & Sofia Poulsen
 
 This project is conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
 
+# How to Run: 
+
+Run [Main.java](src/conwaygame/Main.java). 
+To edit the grid, first enter in the cell's coordinates that you wish to edit, and then toggle its alive/dead state. 
+Red cells are dead, and green cells are alive. Unpause the game to see it running in real time. 
+*Note that the coordinates are zero-indexed!*
+
 # TODO: 
 
 **MVP:**
 - [ ] Logic: Add different types of creatures to the grid
 - [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
-- [ ] Logic: Figure out why GameController thread only works when printing text. (???)
-- [ ] UI: show whether the game is paused or unpaused
+- [X] ~~Logic: Figure out why GameController thread only works when printing text. (???)~~
+- [X] ~~UI: show whether the game is paused or unpaused~~
 - [X] ~~Design: Create a wrapper for the ConwayGame, GameController and GameViewer~~
-- [X] Logic & UI: Make UI grid cells dynamically editable instead of hard-coded
-- [X] UI: Create an actual grid UI
+- [X] ~~Logic & UI: Make UI grid cells dynamically editable instead of hard-coded~~
+- [X] ~~UI: Create an actual grid UI~~
 
 **Stretch Goals:** 
 - [ ] UI: Center the grid & make the UI dynamically resize.

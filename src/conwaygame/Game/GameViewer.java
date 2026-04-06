@@ -8,11 +8,12 @@ public class GameViewer extends JFrame {
 
     GamePanel gamePanel;
     JLabel xCoordLabel = new JLabel("x: ");
-    JTextField xCoordInput = new JTextField("  ");
+    JTextField xCoordInput = new JTextField("");
     JLabel yCoordLabel = new JLabel("y: ");
-    JTextField yCoordInput = new JTextField("  ");
+    JTextField yCoordInput = new JTextField("");
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
+    JLabel gamePausedLabel = new JLabel("");
     Color[][] cellColors;
 
     public GameViewer(int width, int height) {
@@ -22,13 +23,17 @@ public class GameViewer extends JFrame {
 
         JPanel mainPanel = new JPanel();
         gamePanel = new GamePanel(width, height);
+        JPanel controlPanel = new JPanel(new GridLayout(4, 2));
         mainPanel.add(gamePanel);
-        mainPanel.add(xCoordLabel);
-        mainPanel.add(xCoordInput);
-        mainPanel.add(yCoordLabel);
-        mainPanel.add(yCoordInput);
-        mainPanel.add(toggleCellStateButton);
-        mainPanel.add(pauseUnpauseButton);
+        controlPanel.add(gamePausedLabel);
+        controlPanel.add(pauseUnpauseButton);
+        controlPanel.add(xCoordLabel);
+        controlPanel.add(xCoordInput);
+        controlPanel.add(yCoordLabel);
+        controlPanel.add(yCoordInput);
+        controlPanel.add(toggleCellStateButton);
+        controlPanel.add(new JLabel("")); //this is just here for spacing
+        mainPanel.add(controlPanel);
         cellColors = new Color[height][width];
         this.add(mainPanel);
         this.pack();
