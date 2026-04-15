@@ -19,4 +19,7 @@ public class DefaultCreature extends AbstractCreature {
     public Color getAliveColor() {
         return Color.GREEN;
     }
+
+    @Override
+    public boolean isDefault() {return true;}
 }

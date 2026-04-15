@@ -18,6 +18,13 @@ public class GameController {
         runGameTask.start();
         playOneTurnAndUpdateView(); //plays one turn to load in the grid
 
+//        this.view.setDefaultCreatureListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e){
+////                runGameTask.setCreatureType(gridModel.creatureFactory);
+//            }
+//        });
+
         this.view.toggleCellStateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +62,6 @@ public class GameController {
     }
 
     class RunGameTask extends Thread {
-
         boolean paused = true;
 
         public void run() {
@@ -77,6 +83,7 @@ public class GameController {
         public void togglePaused() {
             paused = !paused;
         }
+//        public void setCreatureType(Cell new) {selectedCreatureType = type;}
 
     }
 

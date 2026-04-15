@@ -37,4 +37,8 @@ public abstract class AbstractCreature {
     }
 
     public abstract Color getAliveColor();
+
+    public boolean isDefault(){return false;}
+    public boolean isExplosive(){return false;}
+    public boolean isScarcity(){return false;}
 }

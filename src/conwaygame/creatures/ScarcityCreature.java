@@ -19,4 +19,7 @@ public class ScarcityCreature extends AbstractCreature {
     public Color getAliveColor() {
         return Color.BLUE;
     }
+
+    @Override
+    public boolean isScarcity() {return true;}
 }

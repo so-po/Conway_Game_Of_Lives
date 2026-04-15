@@ -14,6 +14,10 @@ public class GameViewer extends JFrame {
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
     JLabel gamePausedLabel = new JLabel("");
+    JLabel currentlySelectedCreatureType = new JLabel("Currently Selected Creature: ");
+    JButton setDefaultCreature = new JButton("Default");
+    JButton setExplosiveCreature = new JButton("Explosive");
+    JButton setScarcityCreature = new JButton("Scarcity");
     Color[][] cellColors;
 
     public GameViewer(int width, int height) {
@@ -23,7 +27,7 @@ public class GameViewer extends JFrame {
 
         JPanel mainPanel = new JPanel();
         gamePanel = new GamePanel(width, height);
-        JPanel controlPanel = new JPanel(new GridLayout(4, 2));
+        JPanel controlPanel = new JPanel(new GridLayout(7, 2));
         mainPanel.add(gamePanel);
         controlPanel.add(gamePausedLabel);
         controlPanel.add(pauseUnpauseButton);
@@ -32,13 +36,24 @@ public class GameViewer extends JFrame {
         controlPanel.add(yCoordLabel);
         controlPanel.add(yCoordInput);
         controlPanel.add(toggleCellStateButton);
+        controlPanel.add(new JLabel(""));
+        controlPanel.add(currentlySelectedCreatureType);
+        controlPanel.add(new JLabel(""));
+        controlPanel.add(setDefaultCreature);
+        controlPanel.add(setExplosiveCreature);
+        controlPanel.add(setScarcityCreature);
         controlPanel.add(new JLabel("")); //this is just here for spacing
+
         mainPanel.add(controlPanel);
         cellColors = new Color[height][width];
         this.add(mainPanel);
         this.pack();
 
         this.setLocationRelativeTo(null);
+    }
+
+    public void setDefaultCreatureListener(ActionListener actionListener){
+        setDefaultCreature.addActionListener(actionListener);
     }
 
     public void toggleCellStateListener(ActionListener actionListener){
