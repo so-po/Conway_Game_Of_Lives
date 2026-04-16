@@ -14,9 +14,9 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 # TODO: 
 
 **MVP:**
-- [ ] Logic: Add different types of creatures to the grid
-- [ ] Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive? 
-- [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
+- [X] ~~Logic: Add different types of creatures to the grid~~
+- [X] ~~Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive?~~
+- [X] ~~UI: Make the grid UI able to display different types of creatures (e.g., with different colors)~~
 - [ ] Grading: Ask if the facade pattern is sufficient for counting as a fourth pattern
 - [ ] Logic: Write tests for everything
 - [X] ~~Logic: Figure out why GameController thread only works when printing text. (???)~~
