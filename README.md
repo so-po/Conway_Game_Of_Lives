@@ -14,8 +14,9 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 # TODO: 
 
 **MVP:**
+- [ ] Logic: All 'dead' cells have the DEFAULT type ressurection threshold. Should this change based on the cell's previous type? Otherwise we should remove the resurrection count from all strategies because it's redundant & misleading.
 - [ ] Grading: Ask about whether our use of strategy & template pattern together counts as two patterns or not
-- [ ] Clean-up: Unify naming of revive/ressurect
+- [ ] Clean-up: Unify naming of revive/ressurect/rebirth/birth
 - [ ] Logic: Write tests for everything
 - [X] ~~Logic: Add different types of creatures to the grid~~
 - [X] ~~Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive?~~

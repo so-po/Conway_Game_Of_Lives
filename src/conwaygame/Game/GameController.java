@@ -10,7 +10,7 @@ public class GameController {
     GameViewer view;
     RunGameTask runGameTask;
 
-    public GameController(Grid model, GameViewer view) { //TODO: make GamePanel & Game less tightly coupled? (like w/ an an abstract gameviewer)
+    public GameController(Grid model, GameViewer view) {
         this.gridModel = model;
         this.view = view;
         this.runGameTask = new RunGameTask();
