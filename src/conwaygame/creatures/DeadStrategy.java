@@ -21,8 +21,8 @@ public class DeadStrategy extends Strategy {
         return Color.RED;
     }
 
-    @Override
-    public boolean isDead() {
-        return true;
+    public CreatureType getType() {
+        return CreatureType.DEAD;
     }
+
 }

@@ -19,13 +19,13 @@ public class StrategyFactory {
         return new ScarcityStrategy();
     }
 
-    public Strategy getStrategy(String type){
-        switch (type){
-            case "DEFAULT": return getDefaultStrategy();
-            case "EXPLOSIVE": return getExplosiveStrategy();
-            case "SCARCITY": return getScarcityStrategy();
-            default: return getDeadStrategy();
-        }
+    public Strategy getStrategy(CreatureType type){
+        return switch (type) {
+            case DEFAULT -> getDefaultStrategy();
+            case EXPLOSIVE -> getExplosiveStrategy();
+            case SCARCITY -> getScarcityStrategy();
+            default -> getDeadStrategy();
+        };
     }
 
 }

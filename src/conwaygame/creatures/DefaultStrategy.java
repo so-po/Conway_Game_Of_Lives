@@ -2,6 +2,8 @@ package conwaygame.creatures;
 
 import java.awt.*;
 
+import static conwaygame.creatures.CreatureType.DEAD;
+
 public class DefaultStrategy extends Strategy {
 
     int getMinimumNeighbours() { return 2; }
@@ -16,8 +18,8 @@ public class DefaultStrategy extends Strategy {
         return Color.GREEN;
     }
 
-    @Override
-    public boolean isDefault() {
-        return true;
+    public CreatureType getType() {
+        return CreatureType.DEFAULT;
     }
+
 }

@@ -1,6 +1,7 @@
 package conwaygame.creatures;
-
 import java.awt.*;
+
+import static conwaygame.creatures.CreatureType.*;
 
 public abstract class Strategy {
 
@@ -8,10 +9,11 @@ public abstract class Strategy {
     abstract int getMaxNeighbours();
     abstract int getResurrectionNeighbourCount();
 
-    public boolean isDefault(){ return false; }
-    public boolean isExplosive(){ return false; }
-    public boolean isScarcity(){ return false; }
-    public boolean isDead(){ return false; }
+    public abstract CreatureType getType();
+    public boolean isDefault(){ return getType() == DEFAULT; }
+    public boolean isExplosive(){ return getType() == EXPLOSIVE; }
+    public boolean isScarcity(){ return getType() == SCARCITY; }
+    public boolean isDead(){ return getType() == DEAD; }
 
     abstract public Color getColor();
 

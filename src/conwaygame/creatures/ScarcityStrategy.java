@@ -18,9 +18,8 @@ public class ScarcityStrategy extends Strategy {
         return Color.BLUE;
     }
 
-    @Override
-    public boolean isScarcity() {
-        return true;
+    public CreatureType getType() {
+        return CreatureType.SCARCITY;
     }
 
 }

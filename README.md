@@ -15,7 +15,6 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 
 **MVP:**
 - [ ] Grading: Ask about whether our use of strategy & template pattern together counts as two patterns or not
-- [ ] Clean-up: remove magic strings from creature types in backend logic (make creature type enum?)
 - [ ] Clean-up: Unify naming of revive/ressurect
 - [ ] Logic: Write tests for everything
 - [X] ~~Logic: Add different types of creatures to the grid~~
@@ -26,6 +25,7 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 - [X] ~~Design: Create a wrapper for the ConwayGame, GameController and GameViewer~~
 - [X] ~~Logic & UI: Make UI grid cells dynamically editable instead of hard-coded~~
 - [X] ~~UI: Create an actual grid UI~~
+- [X] ~~Clean-up: remove magic strings from creature types in backend logic (make creature type enum?)~~
 
 **Stretch Goals:**
 - [ ] Logic: Add a make random board button w/ input options (use the builder pattern for this? ( ô.ô )

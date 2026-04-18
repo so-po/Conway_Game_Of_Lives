@@ -1,6 +1,7 @@
 package conwaygame.Game;
 
 import conwaygame.creatures.Creature;
+import conwaygame.creatures.CreatureType;
 import conwaygame.creatures.Strategy;
 import conwaygame.creatures.StrategyFactory;
 
@@ -10,9 +11,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Grid {
-    public enum types {
-        DEAD, DEFAULT, EXPLOSIVE, SCARCITY
-    }
 
     final int GRID_COLUMNS;
     final int GRID_ROWS;
@@ -53,7 +51,7 @@ public class Grid {
         if (cellExists(x, y)) {
             Creature cell = getCell(x, y);
             if (cell.isDead()){
-                cell.setStrategy(strategyFactory.getStrategy(selectedType));
+                cell.setStrategy(strategyFactory.getStrategy(CreatureType.valueOf(selectedType)));
             }
             else {
                 cell.kill();

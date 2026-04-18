@@ -21,9 +21,9 @@ public class ExplosiveStrategy extends Strategy {
         return Color.YELLOW;
     }
 
-    @Override
-    public boolean isExplosive() {
-        return true;
+    public CreatureType getType() {
+        return CreatureType.EXPLOSIVE;
     }
+
 
 }
