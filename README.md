@@ -79,3 +79,11 @@ Conway's game of life original rules:
 2. Any live cell with two or three live neighbours lives on to the next generation.
 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+Template -> Strategy Pattern: 
+
+We decided to change from using the template pattern to the strategy pattern for creature behaviour because
+we realized that we kept swapping out classes to change creature types, which was a bit cumbersome and not as easy to read. 
+Also, using the strategy pattern allowed us to move all of the determineRessurectionType logic inside of the class instead of making the grid do it, upholding the single-responsibility principle.  
+
+Finally, given that each creature type class was so small already, it made more sense to have a bunch of small strategy classes that are used by one creature class.

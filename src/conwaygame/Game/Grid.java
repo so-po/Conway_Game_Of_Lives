@@ -1,10 +1,10 @@
 package conwaygame.Game;
 
-import conwaygame.creatures.AbstractCreature;
-import conwaygame.creatures.CreatureFactory;
+import conwaygame.creatures.Creature;
+import conwaygame.creatures.Strategy;
+import conwaygame.creatures.StrategyFactory;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Grid {
@@ -15,8 +15,8 @@ public class Grid {
     final int GRID_COLUMNS;
     final int GRID_ROWS;
 
-    AbstractCreature[][] cells;
-    CreatureFactory creatureFactory = new CreatureFactory();
+    Creature[][] cells;
+    StrategyFactory strategyFactory = new StrategyFactory();
     Random random;
 
     public Grid(int width, int height) throws Exception {
@@ -28,18 +28,18 @@ public class Grid {
         GRID_ROWS = height;
 
         random = new Random();
-        cells = new AbstractCreature[GRID_ROWS][GRID_COLUMNS];
+        cells = new Creature[GRID_ROWS][GRID_COLUMNS];
 
-        for (AbstractCreature[] row : cells) { //initialize list to be full of dead cells
+        for (Creature[] row : cells) { //initialize list to be full of dead cells
             for (int i = 0; i < GRID_COLUMNS; i++) {
-                row[i] = creatureFactory.createCreature("DEAD");
+                row[i] = new Creature();
             }
         }
     }
 
-    private AbstractCreature getCell(int x, int y) { return cells[y][x]; }
+    private Creature getCell(int x, int y) { return cells[y][x]; }
 
-    private void setCell(int x, int y, AbstractCreature newCell) { cells[y][x] = newCell; }
+    private void setCell(int x, int y, Creature newCell) { cells[y][x] = newCell; }
 
     //Do we still want this function? is this useful for testing? just needs to be refactored
 //    public void makeRandomCellAlive() {
@@ -48,36 +48,33 @@ public class Grid {
 //    }
 
     public void toggleCellState(int x, int y, String selectedType) {
-        AbstractCreature newCreature;
         if (cellExists(x, y)) {
-            AbstractCreature cell = getCell(x, y);
+            Creature cell = getCell(x, y);
             if (cell.isDead()){
-                newCreature = creatureFactory.createCreature(selectedType);
+                cell.setStrategy(strategyFactory.getStrategy(selectedType));
             }
             else {
-                newCreature = creatureFactory.createCreature("DEAD");
+                cell.kill();
             }
-            setCell(x,y,newCreature);
         }
     }
 
     public void playTurn() {
         for (int j = 0; j < GRID_ROWS; j++) {
             for (int i = 0; i < GRID_COLUMNS; i++) {
-                AbstractCreature creature = getCell(i, j);
+                Creature creature = getCell(i, j);
                 int status = creature.isAliveStateBasedOnNeighbours(countAliveNeighbors(i, j));
                 if (status == 0){
-                    setCell(i,j, creatureFactory.createCreature("DEAD"));
+                    creature.kill();
                 }
                 else if(status == 1){
-                    AbstractCreature newCreature = determineResurrectionType(i, j);
-                    setCell(i,j, newCreature);
+                    creature.setStrategy(determineResurrectionType(i, j));
                 }
             }
         }
     }
 
-    private AbstractCreature determineResurrectionType(int x, int y){
+    private Strategy determineResurrectionType(int x, int y){
         int defaultCount = countDefaultNeighbors(x,y);
         int explosiveCount = countExplosiveNeighbors(x,y);
         int scarcityCount = countScarcityNeighbors(x,y);
@@ -90,7 +87,7 @@ public class Grid {
         if (scarcityCount > maxCount) {
             largestType = "SCARCITY";
         }
-        return creatureFactory.createCreature(largestType);
+        return strategyFactory.getStrategy(largestType);
     }
 
     private int countAliveNeighbors(int x, int y) {

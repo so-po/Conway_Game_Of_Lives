@@ -2,7 +2,7 @@ package conwaygame.creatures;
 
 import java.awt.*;
 
-public class ScarcityCreature extends AbstractCreature {
+public class ScarcityStrategy extends Strategy {
 
     int getMinimumNeighbours() {
         return 1;
@@ -19,5 +19,8 @@ public class ScarcityCreature extends AbstractCreature {
     }
 
     @Override
-    public boolean isScarcity() { return true; }
+    public boolean isScarcity() {
+        return true;
+    }
+
 }

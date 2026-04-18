@@ -2,24 +2,27 @@ package conwaygame.creatures;
 
 import java.awt.*;
 
-public class ExplosiveCreature extends AbstractCreature {
+public class DeadStrategy extends Strategy {
+
 
     int getMinimumNeighbours() {
-        return 0;
+        return 2;
     }
 
     int getMaxNeighbours() {
-        return 5;
+        return 3;
     }
 
     int getResurrectionNeighbourCount() {
-        return 1;
+        return 3;
     }
 
     public Color getColor() {
-        return Color.ORANGE;
+        return Color.RED;
     }
 
     @Override
-    public boolean isExplosive() { return true; }
+    public boolean isDead() {
+        return true;
+    }
 }
