@@ -1,11 +1,7 @@
 package conwaygame.creatures;
 
 import java.awt.Color;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static conwaygame.creatures.CreatureType.*;
 
 public class Creature {
     Strategy strategy;
@@ -18,11 +14,19 @@ public class Creature {
         int aliveNeighborCount = countAliveCreatures(neighbors);
         if (isAlive() && (imTooLonely(aliveNeighborCount) || imOverCrowded(aliveNeighborCount))) {
             this.kill();
-        } else if (aliveNeighborCount == this.strategy.getResurrectionNeighbourCount()) {
-            //revive & decide what creature to revive as
-            this.determineStrategyToResurrectWith(neighbors);
+        } else if (iHaveEnoughNeighborsToRevive(aliveNeighborCount)) {
+            //revive & choose what type to revive on
+            CreatureType newStrategyType = this.strategy.chooseNewStrategy(neighbors);
+            if (this.strategy.getType() != newStrategyType) {
+                this.strategy = strategyFactory.getStrategy(newStrategyType);
+            }
+            makeAlive();
         }
 
+    }
+
+    private boolean iHaveEnoughNeighborsToRevive(int aliveNeighborCount) {
+        return (aliveNeighborCount == this.strategy.getResurrectionNeighbourCount());
     }
 
     private boolean imTooLonely(int aliveNeighborCount) {
@@ -33,25 +37,6 @@ public class Creature {
         return aliveNeighborCount > this.strategy.getMaxNeighbours();
     }
 
-    private void determineStrategyToResurrectWith(List<Creature> creatures) {
-
-        HashMap<CreatureType, Integer> strategyTypeCount = new HashMap<>();
-        strategyTypeCount.put(DEFAULT, countCreaturesOfType(creatures, DEFAULT));
-        strategyTypeCount.put(EXPLOSIVE, countCreaturesOfType(creatures, EXPLOSIVE));
-        strategyTypeCount.put(SCARCITY, countCreaturesOfType(creatures, SCARCITY));
-
-        CreatureType largestType = DEFAULT;
-        int maxCount = strategyTypeCount.get(DEFAULT);
-        for(Map.Entry<CreatureType, Integer> strategyCountPair : strategyTypeCount.entrySet()) {
-            if (strategyCountPair.getValue() > maxCount) {
-                largestType = strategyCountPair.getKey();
-                maxCount = strategyCountPair.getValue();
-            }
-        }
-
-        this.reviveWithStrategy(strategyFactory.getStrategy(largestType));
-    }
-
     private int countAliveCreatures(List<Creature> creatures) {
         int aliveCreatureCount = 0;
         for (Creature creature : creatures) {
@@ -60,16 +45,6 @@ public class Creature {
             }
         }
         return aliveCreatureCount;
-    }
-
-    private int countCreaturesOfType(List<Creature> creatures, CreatureType type) {
-        int creatureCount = 0;
-        for (Creature creature : creatures) {
-            if (creature.getType() == type) {
-                creatureCount++;
-            }
-        }
-        return creatureCount;
     }
 
     public Creature(Strategy strategy) {

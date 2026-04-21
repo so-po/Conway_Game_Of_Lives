@@ -1,5 +1,6 @@
 package conwaygame.creatures;
 import java.awt.*;
+import java.util.List;
 
 import static conwaygame.creatures.CreatureType.*;
 
@@ -17,4 +18,7 @@ public abstract class Strategy {
     abstract public Color getAliveColor();
     abstract public Color getDeadColor();
 
+    public CreatureType chooseNewStrategy(List<Creature> neighbors) {
+        return getType();
+    }
 }

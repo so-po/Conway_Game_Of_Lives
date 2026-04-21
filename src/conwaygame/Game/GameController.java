@@ -38,6 +38,13 @@ public class GameController {
             }
         });
 
+        this.view.setCopyCatCreatureListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                runGameTask.setCreatureType("COPYCAT");
+            }
+        });
+
         this.view.toggleCellStateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

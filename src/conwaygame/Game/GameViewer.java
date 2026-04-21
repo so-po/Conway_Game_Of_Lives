@@ -18,6 +18,8 @@ public class GameViewer extends JFrame {
     JButton setDefaultCreature = new JButton("Default");
     JButton setExplosiveCreature = new JButton("Explosive");
     JButton setScarcityCreature = new JButton("Scarcity");
+    JButton setCopyCatCreature = new JButton("Copy Cat");
+    //TODO: make these dynamic?
     Color[][] cellColors;
 
     public GameViewer(int width, int height) {
@@ -42,6 +44,7 @@ public class GameViewer extends JFrame {
         controlPanel.add(setDefaultCreature);
         controlPanel.add(setExplosiveCreature);
         controlPanel.add(setScarcityCreature);
+        controlPanel.add(setCopyCatCreature);
         controlPanel.add(new JLabel("")); //this is just here for spacing
         mainPanel.add(controlPanel);
         cellColors = new Color[height][width];
@@ -61,6 +64,10 @@ public class GameViewer extends JFrame {
 
     public void setScarcityCreatureListener(ActionListener actionListener){
         setScarcityCreature.addActionListener(actionListener);
+    }
+
+    public void setCopyCatCreatureListener(ActionListener actionListener){
+        setCopyCatCreature.addActionListener(actionListener);
     }
 
     public void toggleCellStateListener(ActionListener actionListener){
