@@ -20,16 +20,7 @@ public class Grid {
     Random random;
 
     //used for injecting creatures
-    public static class SpawnEntry{
-        String type;
-        int x;
-        int y;
-        public SpawnEntry(String type, int x, int y){
-            this.type = type;
-            this.x = x;
-            this.y = y;
-        }
-    }
+    public record SpawnEntry(String type, int x, int y){}
 
     public Grid(int width, int height, ArrayList<SpawnEntry> spawnCreatureLocations) throws Exception {
         if (width <= 0 || height <= 0) {
