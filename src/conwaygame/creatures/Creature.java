@@ -10,9 +10,9 @@ import static conwaygame.creatures.CreatureType.*;
 public class Creature {
     Strategy strategy;
     StrategyFactory strategyFactory = new StrategyFactory();
+    boolean alive = false;
 
-    //TODO: is this still the template pattern??
-    public void setStrategyBasedOnNeighbors(List<Creature> neighbors) {
+    public void setStateBasedOnNeighbors(List<Creature> neighbors) {
         //Kill or resurrect the cell given its number of neighbours
 
         int aliveNeighborCount = countAliveCreatures(neighbors);
@@ -49,11 +49,17 @@ public class Creature {
             }
         }
 
-        this.strategy = strategyFactory.getStrategy(largestType);
+        this.reviveWithStrategy(strategyFactory.getStrategy(largestType));
     }
 
     private int countAliveCreatures(List<Creature> creatures) {
-        return creatures.size() - countCreaturesOfType(creatures, DEAD);
+        int aliveCreatureCount = 0;
+        for (Creature creature : creatures) {
+            if (creature.isAlive()) {
+                aliveCreatureCount++;
+            }
+        }
+        return aliveCreatureCount;
     }
 
     private int countCreaturesOfType(List<Creature> creatures, CreatureType type) {
@@ -71,24 +77,35 @@ public class Creature {
     }
 
     public Creature() {
-        this.setStrategy(strategyFactory.getDeadStrategy());
+        this.strategy = strategyFactory.getDefaultStrategy();
     }
 
-    public void setStrategy(Strategy strategy) {
-        this.strategy = strategy;
+    public void makeAlive() {
+        this.alive = true;
     }
 
     public void kill() {
-        this.strategy = strategyFactory.getDeadStrategy();
+        this.alive = false;
+    }
+
+    public void reviveWithStrategy(Strategy strategy) {
+        this.makeAlive();
+        this.strategy = strategy;
     }
 
     public boolean isDefault(){ return strategy.isDefault(); }
     public boolean isExplosive(){ return strategy.isExplosive(); }
     public boolean isScarcity(){ return strategy.isScarcity(); }
-    public boolean isDead(){ return strategy.isDead(); }
-    public boolean isAlive() {return !strategy.isDead(); }
+    public boolean isDead(){ return !this.alive; }
+    public boolean isAlive() {return this.alive; }
 
-    public Color getColor() { return strategy.getColor();}
+    public Color getColor() {
+        if (this.isAlive()) {
+            return strategy.getColor();
+        } else {
+            return Color.RED;
+        }
+    }
 
     public CreatureType getType() { return strategy.getType();}
 

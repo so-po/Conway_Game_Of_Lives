@@ -1,5 +1,5 @@
 package conwaygame.creatures;
 
 public enum CreatureType {
-    DEFAULT, EXPLOSIVE, SCARCITY, DEAD
+    DEFAULT, EXPLOSIVE, SCARCITY
 }

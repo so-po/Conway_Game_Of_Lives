@@ -2,7 +2,6 @@ package conwaygame.Game;
 
 import conwaygame.creatures.Creature;
 import conwaygame.creatures.CreatureType;
-import conwaygame.creatures.Strategy;
 import conwaygame.creatures.StrategyFactory;
 
 import java.awt.*;
@@ -43,11 +42,19 @@ public class Grid {
         return (x >= 0 && y >= 0 && x < GRID_COLUMNS && y < GRID_ROWS) && (getCell(x, y) != null);
     }
 
+    protected void reviveCell(int x, int y) { //for testing, to revive the cell w/out changing strategy
+        if (cellExists(x, y)) {
+            Creature cell = getCell(x, y);
+            cell.makeAlive();
+        }
+
+    }
+
     public void toggleCellState(int x, int y, String selectedType) {
         if (cellExists(x, y)) {
             Creature cell = getCell(x, y);
             if (cell.isDead()){
-                cell.setStrategy(strategyFactory.getStrategy(CreatureType.valueOf(selectedType)));
+                cell.reviveWithStrategy(strategyFactory.getStrategy(CreatureType.valueOf(selectedType)));
             }
             else {
                 cell.kill();
@@ -59,7 +66,7 @@ public class Grid {
         for (int y = 0; y < GRID_ROWS; y++) {
             for (int x = 0; x < GRID_COLUMNS; x++) {
                 Creature creature = getCell(x, y);
-                creature.setStrategyBasedOnNeighbors(getCellNeighbors(x, y));
+                creature.setStateBasedOnNeighbors(getCellNeighbors(x, y));
             }
         }
     }

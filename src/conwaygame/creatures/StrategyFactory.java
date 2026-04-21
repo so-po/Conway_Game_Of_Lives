@@ -3,10 +3,6 @@ package conwaygame.creatures;
 
 public class StrategyFactory {
 
-    public Strategy getDeadStrategy() {
-        return new DeadStrategy();
-    }
-
     public Strategy getDefaultStrategy() {
         return new DefaultStrategy();
     }
@@ -21,10 +17,9 @@ public class StrategyFactory {
 
     public Strategy getStrategy(CreatureType type){
         return switch (type) {
-            case DEFAULT -> getDefaultStrategy();
             case EXPLOSIVE -> getExplosiveStrategy();
             case SCARCITY -> getScarcityStrategy();
-            default -> getDeadStrategy();
+            default -> getDefaultStrategy();
         };
     }
 

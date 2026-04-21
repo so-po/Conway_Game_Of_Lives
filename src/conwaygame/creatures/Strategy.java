@@ -13,7 +13,6 @@ public abstract class Strategy {
     public boolean isDefault(){ return getType() == DEFAULT; }
     public boolean isExplosive(){ return getType() == EXPLOSIVE; }
     public boolean isScarcity(){ return getType() == SCARCITY; }
-    public boolean isDead(){ return getType() == DEAD; }
 
     abstract public Color getColor();
 
