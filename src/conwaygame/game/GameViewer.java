@@ -95,7 +95,7 @@ public class GameViewer extends JFrame {
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);
             this.numberOfHorizontalCells = numberOfHorizontalCells;
-            this.numberOfVerticalCells = numberOfHorizontalCells;
+            this.numberOfVerticalCells = numberOfVerticalCells;
         }
 
         public void paintComponent(Graphics g){

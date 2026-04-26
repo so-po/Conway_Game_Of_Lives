@@ -5,8 +5,7 @@ public class ConwayGame { //Facade for Game MVC
     public ConwayGame(int width, int height) throws Exception {
         GameViewer gameViewer = new GameViewer(width, height);
 
-        GameModel grid = new GameModel.GridBuilder().setDimensions(width, height).addDefaultCreatureToLocation(0,0)
-                .addDefaultCreatureToLocation(1,0).addDefaultCreatureToLocation(1,1).build();
+        GameModel grid = GameModel.getNewBuilder().setDimensions(width, height).build();
         GameController game = new GameController(grid, gameViewer);
 
         gameViewer.setVisible(true);

@@ -70,9 +70,9 @@ public class GameModel {
 
         public GridBuilder() {}
 
-        public GridBuilder setDimensions(int x, int y) {
-            this.gridWidth = x;
-            this.gridHeight = y;
+        public GridBuilder setDimensions(int width, int height) {
+            this.gridWidth = width;
+            this.gridHeight = height;
             return this;
         }
 
