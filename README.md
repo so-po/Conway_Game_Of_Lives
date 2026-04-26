@@ -1,8 +1,8 @@
 # Conway's Game of Lives
 
-Group Members: Melanie Porter & Sofia Poulsen
+This is a java app thar runs conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
 
-This project is conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
+This is the final project for the class CSCI 4448, Object-Oriented Analysis and Design, created by **Melanie Porter** & **Sofia Poulsen**.
 
 # How to Run: 
 
