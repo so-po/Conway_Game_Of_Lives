@@ -13,7 +13,7 @@ public class ExplosiveStrategy extends Strategy {
         return 5;
     }
 
-    int getResurrectionNeighbourCount() {
+    int getNeighbourCountForRevival() {
         return 1;
     }
 

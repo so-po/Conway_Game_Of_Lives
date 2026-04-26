@@ -13,20 +13,20 @@ public class Creature {
     boolean alive = false;
 
     public void setStateBasedOnNeighbors(List<Creature> neighbors) {
-        //Kill or resurrect the cell given its number of neighbours
+        //Kill or revive the cell given its number of neighbours
 
         int aliveNeighborCount = countAliveCreatures(neighbors);
         if (isAlive() && (imTooLonely(aliveNeighborCount) || imOverCrowded(aliveNeighborCount))) {
             this.kill();
         } else if (iHaveEnoughNeighborsToRevive(aliveNeighborCount)) {
             //revive & decide what creature to revive as
-            this.determineStrategyToResurrectWith(neighbors);
+            this.determineStrategyToReviveWith(neighbors);
         }
 
     }
 
     private boolean iHaveEnoughNeighborsToRevive(int aliveNeighborCount) {
-        return (aliveNeighborCount == this.strategy.getResurrectionNeighbourCount());
+        return (aliveNeighborCount == this.strategy.getNeighbourCountForRevival());
     }
 
     private boolean imTooLonely(int aliveNeighborCount) {
@@ -37,7 +37,7 @@ public class Creature {
         return aliveNeighborCount > this.strategy.getMaxNeighbours();
     }
 
-    private void determineStrategyToResurrectWith(List<Creature> creatures) {
+    private void determineStrategyToReviveWith(List<Creature> creatures) {
 
         HashMap<CreatureType, Integer> strategyTypeCount = new HashMap<>();
         strategyTypeCount.put(DEFAULT, countCreaturesOfType(creatures, DEFAULT));

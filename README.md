@@ -8,14 +8,14 @@ This project is conway's game of life (https://conwaylife.com/), extended to inc
 
 Run [Main.java](src/conwaygame/Main.java). 
 To edit the grid, first enter in the cell's coordinates that you wish to edit, and then toggle its alive/dead state. 
-Red cells are dead, and green cells are alive. Unpause the game to see it running in real time. 
+Unpause the game to see it running in real time. 
 *Note that the coordinates are zero-indexed!*
 
 # TODO: 
 
 **MVP:**
-- [ ] Clean-up: Unify naming of revive/ressurect/rebirth/birth
-- [ ] Logic: Write tests for everything
+- [X] ~~Clean-up: Unify naming of revive/ressurect/rebirth/birth~~
+- [X] ~~Logic: Write a bunch of tests~~
 - [X] ~~Logic: Add different types of creatures to the grid~~
 - [X] ~~Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive?~~
 - [X] ~~UI: Make the grid UI able to display different types of creatures (e.g., with different colors)~~

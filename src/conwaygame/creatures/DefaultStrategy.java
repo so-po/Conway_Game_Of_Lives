@@ -8,7 +8,7 @@ public class DefaultStrategy extends Strategy {
 
     int getMaxNeighbours() { return 3; }
 
-    int getResurrectionNeighbourCount() { return 3; }
+    int getNeighbourCountForRevival() { return 3; }
 
 
     @Override

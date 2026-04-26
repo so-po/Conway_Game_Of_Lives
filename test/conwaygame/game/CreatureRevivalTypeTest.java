@@ -3,10 +3,12 @@ package conwaygame.game;
 import org.junit.jupiter.api.Test;
 
 
-public class CreatureResurrectionTypeTest {
+public class CreatureRevivalTypeTest {
+
+    //test that creatures revive as the correct type based on their neighbouring cells
 
     @Test
-    public void testDefaultBirth() throws Exception{
+    public void testDefaultRevival() throws Exception{
         GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "DEFAULT");
         grid.toggleCellState(1, 2, "DEFAULT");
@@ -17,7 +19,7 @@ public class CreatureResurrectionTypeTest {
     }
 
     @Test
-    public void testExplosiveBirth() throws Exception{
+    public void testExplosiveRevival() throws Exception{
         GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "EXPLOSIVE");
         grid.toggleCellState(1, 2, "EXPLOSIVE");
@@ -28,7 +30,7 @@ public class CreatureResurrectionTypeTest {
     }
 
     @Test
-    public void testScarcityBirth() throws Exception{
+    public void testScarcityRevival() throws Exception{
         GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(0, 0, "SCARCITY");
         grid.toggleCellState(0, 0, "SCARCITY"); //make cell dead

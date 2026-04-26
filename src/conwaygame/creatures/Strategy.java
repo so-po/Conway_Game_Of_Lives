@@ -7,7 +7,7 @@ public abstract class Strategy {
 
     abstract int getMinimumNeighbours();
     abstract int getMaxNeighbours();
-    abstract int getResurrectionNeighbourCount();
+    abstract int getNeighbourCountForRevival();
 
     public abstract CreatureType getType();
     public boolean isDefault(){ return getType() == DEFAULT; }
