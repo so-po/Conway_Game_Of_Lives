@@ -11,6 +11,10 @@ To edit the grid, first enter in the cell's coordinates that you wish to edit, a
 Unpause the game to see it running in real time. 
 *Note that the coordinates are zero-indexed!*
 
+# Coverage:
+
+![test coverage.png](test%20coverage.png)
+
 # TODO: 
 
 **MVP:**
