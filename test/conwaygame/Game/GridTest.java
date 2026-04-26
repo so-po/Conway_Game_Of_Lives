@@ -3,11 +3,6 @@ package conwaygame.Game;
 import org.junit.jupiter.api.Test;
 
 public class GridTest {
-
-//    Grid grid = new Grid.GridBuilder().setDimensions(width, height).addDefaultCreatureToLocation(0,0)
-//            .addDefaultCreatureToLocation(1,0).addDefaultCreatureToLocation(1,1).build();
-
-
     @Test
     public void testBuilderCreatureSpawner() throws Exception{
         Grid grid = new Grid.GridBuilder().setDimensions(4, 4)
