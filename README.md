@@ -15,7 +15,7 @@ Unpause the game to see it running in real time.
 
 # Coverage:
 
-![test coverage.png](test%20coverage.png)
+![test coverage.png](images/test%20coverage.png)
 
 # TODO: 
 
